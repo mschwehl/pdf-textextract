@@ -9,8 +9,9 @@ RUN apt-get update && \
     apt-get update && apt-get install --no-install-recommends -y \
       make \
       poppler-utils \
-      tesseract-ocr && \
-    rm -rf /var/lib/apt/lists/*
+     tesseract-ocr tesseract-ocr-deu tesseract-ocr-ron && \
+    apt-get clean 
+RUN rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 COPY Makefile requirements.txt /app

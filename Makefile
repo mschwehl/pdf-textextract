@@ -39,7 +39,7 @@ $(OUTPUT_DIR)/%.json : $$(call ocr_text,%)
 # Finally we ocr each page image
 $(INTERMEDIATE_DIR)/ocr_text/%.txt: $(INTERMEDIATE_DIR)/optimized_images/%
 	mkdir -p $(dir $@)
-	tesseract -l eng --dpi 150 $< $(basename $@) txt
+	tesseract -l deu+ron --dpi 300 $< $(basename $@) txt
 
 # This does a little image processing to make it easier to OCR
 $(INTERMEDIATE_DIR)/optimized_images/% : $(INTERMEDIATE_DIR)/page_images/%
@@ -57,7 +57,7 @@ pages : $(page_images)
 $(INTERMEDIATE_DIR)/page_images/% : $(INTERMEDIATE_DIR)/encoded_filenames/%
 	mkdir -p $@
 	touch $@
-	- pdftoppm -r 150 $< $@/page
+	- pdftoppm -r 300 $< $@/page
 
 
 # Filenames come in a wonderful variety and some are a pain to work
